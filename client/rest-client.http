@@ -1,0 +1,14 @@
+### Suche alle Kunden
+http://{{host}}/customer
+
+### Suche Kunden mit bestimmtem Vornamen und Nachnamen
+http://{{host}}/customer?firstName=Manuel&lastName=Neuer
+
+### Füge einen neuen Kunden hinzu
+POST http://{{host}}/customer?firstName=Manuel&lastName=Neuer
+Content-Type: application/json
+
+< kunde-neu.json
+
+### Überprüfe die Kreditwürdigkeit eines Kunden
+http://{{host}}/customer?id=0&credit=100
