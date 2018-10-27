@@ -19,13 +19,11 @@ public class CustomerHandler {
 
     public ResponseEntity<List<Customer>> findAll() {
         if (emptyCustomers()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
     public ResponseEntity<Customer> findByName(String firstName, String lastName) {
         if (emptyCustomers()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
         Customer temp = findCustomer(firstName, lastName);
         if (temp == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(temp, HttpStatus.OK);
@@ -33,17 +31,17 @@ public class CustomerHandler {
 
     public ResponseEntity<Boolean> add(Customer customer) {
         Customer temp = findCustomer(customer);
-        if (temp != null) return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
+        if (temp != null) return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
         customers.add(customer);
         return new ResponseEntity<>(true, HttpStatus.CREATED);
     }
 
     public ResponseEntity<Boolean> isCreditWorthy(long id, double credit) {
-        if (emptyCustomers()) return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        if (emptyCustomers()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         Customer temp = findCustomer(id);
         if (temp.getCredit() > credit)
             return new ResponseEntity<>(true, HttpStatus.OK);
-        return new ResponseEntity<>(false, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
     }
 
     private boolean emptyCustomers() {
@@ -52,7 +50,8 @@ public class CustomerHandler {
 
     private Customer findCustomer(String firstName, String lastName) {
         if (emptyCustomers()) return null;
-        List<Customer> temp = customers.stream().filter(x -> x.getFirstName().equals(firstName) && x.getLastName().equals(lastName)).collect(Collectors.toList());
+        List<Customer> temp = customers.stream().filter(x -> x.getFirstName().equals(firstName)
+                && x.getLastName().equals(lastName)).collect(Collectors.toList());
         if (temp.size() != 1) return null;
         return temp.get(0);
     }

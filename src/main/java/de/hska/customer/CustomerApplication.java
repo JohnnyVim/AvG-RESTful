@@ -24,7 +24,8 @@ public class CustomerApplication {
     }
 
     @RequestMapping(path = "/customer", method = RequestMethod.GET, params = {"firstName", "lastName"})
-    public ResponseEntity<Customer> findByName(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public ResponseEntity<Customer> findByName(@RequestParam("firstName") String firstName,
+                                               @RequestParam("lastName") String lastName) {
         return handler.findByName(firstName, lastName);
     }
 

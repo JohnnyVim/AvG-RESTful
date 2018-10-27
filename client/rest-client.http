@@ -4,6 +4,9 @@ http://{{host}}/customer
 ### Suche Kunden mit bestimmtem Vornamen und Nachnamen
 http://{{host}}/customer?firstName=Manuel&lastName=Neuer
 
+### Suche Kunden mit bestimmtem Vornamen und Nachnamen
+http://{{host}}/customer?firstName=Manuel&lastName=Ne
+
 ### Füge einen neuen Kunden hinzu
 POST http://{{host}}/customer?firstName=Manuel&lastName=Neuer
 Content-Type: application/json
@@ -12,3 +15,6 @@ Content-Type: application/json
 
 ### Überprüfe die Kreditwürdigkeit eines Kunden
 http://{{host}}/customer?id=0&credit=100
+
+### Überprüfe die Kreditwürdigkeit eines Kunden
+http://{{host}}/customer?id=0&credit=100000
