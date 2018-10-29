@@ -1,26 +1,16 @@
 package de.hska.customer.entity;
 
 public class Customer {
-    private static long idCounter = 0;
-
-    private long id;
     private String firstName;
     private String lastName;
-    private double credit;
+    private double limit;
 
-    public Customer() {
-        this.id = idCounter++;
-    }
+    public Customer() {}
 
-    public Customer(String firstName, String lastName, double credit) {
-        this.id = idCounter++;
+    public Customer(String firstName, String lastName, double limit) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.credit = credit;
-    }
-
-    public long getId() {
-        return id;
+        this.limit = limit;
     }
 
     public String getFirstName() {
@@ -31,7 +21,7 @@ public class Customer {
         return lastName;
     }
 
-    public double getCredit() {
-        return credit;
+    public double getLimit() {
+        return limit;
     }
 }

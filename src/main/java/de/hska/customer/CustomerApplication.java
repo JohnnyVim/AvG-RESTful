@@ -29,13 +29,14 @@ public class CustomerApplication {
         return handler.findByName(firstName, lastName);
     }
 
-    @RequestMapping(path = "/customer", method = RequestMethod.GET, params = {"id", "credit"})
-    public ResponseEntity<Boolean> isCreditWorthy(@RequestParam("id") Long id, @RequestParam("credit") Double credit) {
-        return handler.isCreditWorthy(id, credit);
-    }
-
     @RequestMapping(path = "/customer", method = RequestMethod.POST)
     public ResponseEntity<Boolean> add(@RequestBody Customer customer) {
         return handler.add(customer);
     }
+
+    @RequestMapping(path = "/customer", method = RequestMethod.POST, params = { "credit"})
+    public ResponseEntity<Boolean> isCreditWorthy(@RequestBody Customer customer, @RequestParam("credit") Double credit) {
+        return handler.isCreditWorthy(customer, credit);
+    }
+
 }

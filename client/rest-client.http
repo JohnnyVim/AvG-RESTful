@@ -14,9 +14,15 @@ Content-Type: application/json
 < kunde-neu.json
 
 ### Überprüfe die Kreditwürdigkeit eines Kunden
-http://{{host}}/customer?id=0&credit=100
+POST http://{{host}}/customer?credit=100
+Content-Type: application/json
+
+< kunde-neu.json
 
 ### Überprüfe die Kreditwürdigkeit eines Kunden
-http://{{host}}/customer?id=0&credit=100000
+POST http://{{host}}/customer?credit=100000
+Content-Type: application/json
+
+< kunde-neu.json
 
 ###

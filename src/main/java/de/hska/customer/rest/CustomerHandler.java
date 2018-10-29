@@ -14,7 +14,7 @@ public class CustomerHandler {
     public CustomerHandler() {
         customers = new ArrayList<>();
         customers.add(new Customer("Manuel", "Neuer", 1000));
-        customers.add(new Customer("Adirana", "Alpha", 2000));
+        customers.add(new Customer("Ariane", "Alpha", 2000));
     }
 
     public ResponseEntity<List<Customer>> findAll() {
@@ -36,10 +36,8 @@ public class CustomerHandler {
         return new ResponseEntity<>(true, HttpStatus.CREATED);
     }
 
-    public ResponseEntity<Boolean> isCreditWorthy(long id, double credit) {
-        if (emptyCustomers()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        Customer temp = findCustomer(id);
-        if (temp.getCredit() > credit)
+    public ResponseEntity<Boolean> isCreditWorthy(Customer customer, double credit) {
+        if (customer.getLimit() > credit)
             return new ResponseEntity<>(true, HttpStatus.OK);
         return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
     }
@@ -52,13 +50,6 @@ public class CustomerHandler {
         if (emptyCustomers()) return null;
         List<Customer> temp = customers.stream().filter(x -> x.getFirstName().equals(firstName)
                 && x.getLastName().equals(lastName)).collect(Collectors.toList());
-        if (temp.size() != 1) return null;
-        return temp.get(0);
-    }
-
-    private Customer findCustomer(long id) {
-        if (emptyCustomers()) return null;
-        List<Customer> temp = customers.stream().filter(x -> x.getId() == id).collect(Collectors.toList());
         if (temp.size() != 1) return null;
         return temp.get(0);
     }
