@@ -15,6 +15,7 @@ public class CustomerHandler {
         customers = new ArrayList<>();
         customers.add(new Customer("Manuel", "Neuer", 1000));
         customers.add(new Customer("Ariane", "Alpha", 2000));
+        customers.add(new Customer("Benno", "Beta", 500));
     }
 
     public ResponseEntity<List<Customer>> findAll() {
@@ -31,15 +32,15 @@ public class CustomerHandler {
 
     public ResponseEntity<Boolean> add(Customer customer) {
         Customer temp = findCustomer(customer);
-        if (temp != null) return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        if (temp != null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         customers.add(customer);
-        return new ResponseEntity<>(true, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     public ResponseEntity<Boolean> isCreditWorthy(Customer customer, double credit) {
         if (customer.getLimit() > credit)
-            return new ResponseEntity<>(true, HttpStatus.OK);
-        return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     private boolean emptyCustomers() {
