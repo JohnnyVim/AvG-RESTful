@@ -45,7 +45,7 @@ public class CustomerHandler {
     }
 
     private boolean emptyCustomers() {
-        return (customers == null && customers.isEmpty());
+        return (customers == null || customers.isEmpty());
     }
 
     private Customer findCustomer(String firstName, String lastName) {

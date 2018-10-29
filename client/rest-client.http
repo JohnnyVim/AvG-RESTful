@@ -18,3 +18,5 @@ http://{{host}}/customer?id=0&credit=100
 
 ### Überprüfe die Kreditwürdigkeit eines Kunden
 http://{{host}}/customer?id=0&credit=100000
+
+###
